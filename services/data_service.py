@@ -168,6 +168,10 @@ class DataService:
         """Get all test executions"""
         return st.session_state.test_executions
     
+    def get_test_executions_by_test_plan(self, test_plan_id: int) -> List[Dict[str, Any]]:
+        """Get test executions for a test plan"""
+        return [te for te in st.session_state.test_executions if te.get('test_plan_id') == test_plan_id]
+    
     def add_test_execution(self, execution: Dict[str, Any]) -> Dict[str, Any]:
         """Add new test execution"""
         execution['id'] = len(st.session_state.test_executions) + 1
@@ -179,6 +183,10 @@ class DataService:
     def get_all_test_results(self) -> List[Dict[str, Any]]:
         """Get all test results"""
         return st.session_state.test_results
+    
+    def get_test_results_by_test_plan(self, test_plan_id: int) -> List[Dict[str, Any]]:
+        """Get test results for a test plan"""
+        return [tr for tr in st.session_state.test_results if tr.get('test_plan_id') == test_plan_id]
     
     def add_test_result(self, result: Dict[str, Any]) -> Dict[str, Any]:
         """Add new test result"""
